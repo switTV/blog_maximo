@@ -1,1 +1,11 @@
-console.log("hola")
+const express = require('express')
+const app = express()
+const port = 1337
+
+app.get('/', (req, res) => {
+    res.send('Hola carola')
+})
+
+app.listen(port, () => {
+    console.log(port)
+})
