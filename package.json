@@ -1,0 +1,19 @@
+{
+  "name": "proyecto101",
+  "version": "1.0.0",
+  "description": "Proyecto epico",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/switTV/blog_maximo.git"
+  },
+  "author": "Maximo <svelterean@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/switTV/blog_maximo/issues"
+  },
+  "homepage": "https://github.com/switTV/blog_maximo#readme"
+}
