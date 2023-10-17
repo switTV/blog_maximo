@@ -13,8 +13,17 @@ creando distintas ramas en mi archivo index.js en el backend
 ##dia 17/10/23, hora 18:37pm
 agregue este endpoint:
 ```javascript
-function saludar() {
-  console.log("¡Hola, mundo!");
-}
+app.get("/posts/:id/", (req, res) => {
+    const { id } = req.params
 
-hola
+    const searchedPost = posts.find((post) => post.id == id)
+
+    if (searchedPost === undefined) {
+        res.status(404).send('Err 404: Se produjo un error al buscar el post');
+    }
+    else {
+        res.send(searchedPost);
+    }
+})
+```
+y hice posts una variable global
