@@ -30,7 +30,7 @@ y hice posts una variable global
 
 ## dia 17/10/23, hora 21:33pm
 agregue otro endpoint mas para buscar por los tags:
-```
+```javascript
 app.get("/posts/tags/:tag", (req, res) => {
     const { tag } = req.params;
     const filteredPostsByTag = posts.filter((post) => post.tags.includes(tag));
