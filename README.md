@@ -27,3 +27,19 @@ app.get("/posts/:id/", (req, res) => {
 })
 ```
 y hice posts una variable global
+
+## dia 17/10/23, hora 21:33pm
+agregue otro endpoint mas para buscar por los tags:
+```
+app.get("/posts/tags/:tag", (req, res) => {
+    const { tag } = req.params;
+    const filteredPostsByTag = posts.filter((post) => post.tags.includes(tag));
+
+    if(filteredPostsByTag === undefined) {
+        res.status(404).send('Err 404: Se produjo un error al buscar el post con la etiqueta indicada');
+    }
+    else {
+        res.send(filteredPostsByTag);
+    }
+});
+```
