@@ -29,19 +29,28 @@ app.get('/posts', (req, res) => {
     res.json(posts) //agregue mas info a los posts, lo hice un array y lo hice una variable publica
 })
 
-app.get("/posts/:id/", (req, res) => {
-    const { id } = req.params
+app.get("/posts/tags/:tag", (req, res) => {
+    const { tag } = req.params;
+    const filteredPostsByTag = posts.filter((post) => post.tags.includes(tag));
 
-    const searchedPost = posts.find((post) => post.id == id)
+    if(filteredPostsByTag === undefined) {
+        res.status(404).send('Err 404: Se produjo un error al buscar el post con la etiqueta indicada');
+    }
+    else {
+        res.send(filteredPostsByTag);
+    }
+});
+
+app.get("/posts/:id", (req, res) => {
+    const { id } = req.params;
+    const searchedPost = posts.find((post) => post.id == id);
 
     if (searchedPost === undefined) {
         res.status(404).send('Err 404: Se produjo un error al buscar el post');
-    }else {
+    } else {
         res.send(searchedPost);
     }
-
-
-}) // agregue un endpoint
+});
 
 app.listen(port, () => {
     console.log(port)
