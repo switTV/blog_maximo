@@ -43,3 +43,21 @@ app.get("/posts/tags/:tag", (req, res) => {
     }
 });
 ```
+
+## dia 19/10/23, hora: 12:12pm
+cambie el endpoint para buscar por tags a un query parameter
+``` javascript
+app.get("/posts/tags", (req, res) => {
+    const { tag } = req.query;
+    const filteredPostsByTag = posts.filter((post) => post.tags.includes(tag));
+
+
+    if(filteredPostsByTag === undefined) {
+        res.status(404).send('Err 404: Se produjo un error al buscar el post con la etiqueta indicada');
+    }
+    else {
+        res.send(filteredPostsByTag);
+    }
+
+});
+```
