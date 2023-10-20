@@ -61,3 +61,28 @@ app.get("/posts/tags", (req, res) => {
 
 });
 ```
+
+## dia 19/10/23, hora: 22:42pm
+agregue un sistema rutas con express.Router creando una carpeta llamada routes
+donde por ahora estan los archivos: "index.js", "postRouter.js", "searchRouter.js"
+
+### index.js
+``` javascript
+const postsRouter = require("./postsRouter")
+const searchRouter = require("./searchRouter")
+
+function routerAPI(app) {
+    app.use("/posts", postsRouter)
+    app.use("/search", searchRouter)
+}
+
+module.exports = routerAPI
+
+```
+
+y use la variable en **backend/index.js** agregando estas 2 lineas de codigo
+``` javascript
+const routerApi = require('../routes/index')
+routerApi(app)
+```
+
