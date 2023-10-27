@@ -4,29 +4,13 @@ const app = express()
 
 const port = 1337
 
+app.use(express.json())
+
 routerApi(app)
-
-posts = [
-    {
-        "id": 1,
-        "title_post": "HTML es un lenguaje de programación?",
-        "min_description": "En este post investigaremos si html podria llegar a ser considerado un lenguaje de programacion",
-        "tags": ["tecnologia", "futuro", "html", "web", "2023"],
-        "isLiked": false,
-    },
-    {
-        "id": 2,
-        "title_post": "HTML es un lenguaje de progdasasdaramación?",
-        "min_description": "En este post investasdasdasdasigaremos si html podria llegar a ser considerado un lenguaje de programacion",
-        "tags": ["tecnologia", "futadasdasduro"],
-        "isLiked": false,
-
-    },
-]
 
 
 app.get('/', (req, res) => {
-    res.send('Dirigete a /posts') //cambie el "hola carola"
+    res.send('Dirigete a /api/v1/posts') //cambie el "hola carola"
 })
 
 app.listen(port, () => {
