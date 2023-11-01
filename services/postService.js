@@ -1,9 +1,11 @@
+const boom = require("@hapi/boom")
+
 class PostService {
     constructor() {
         this.posts = [] // manejando los post en memoria (luego lo cambiaremos a una base de datos)
     }
 
-    create(body) {
+    async create(body) {
         // constantes
         const generatedId = this.posts.length + 1
         const newProduct = {
@@ -16,35 +18,45 @@ class PostService {
         return newProduct
     }
 
-    find() {
+    async find() {
         // retorno
         return this.posts
     }
 
-    findOne(id) {
+    async findOne(id) {
         // constante
         const searchedPost = this.posts.find((post) => post.id == id); // busca un post con el id indicado
+
+        // condicional "handle error"
+        if (!searchedPost) {
+            throw boom.notFound('post not found')
+        }
 
         // retorno
         return searchedPost
     }
 
-    findByTag(tag) {
+    async findByTag(tag) {
         // constante
         const filteredPostsByTag = this.posts.filter((post) => post.tags.includes(tag)); // filtra todos los post con el tag indicado
+
+        // condicional "handle error"
+        if (!filteredPostsByTag) {
+            throw boom.notFound('Post not found')
+        }
 
         // retorno
         return filteredPostsByTag
     }
 
-    update(id, changes) {
+    async update(id, changes) {
         // constante
         const index = this.posts.findIndex((post) => post.id == id)
         const post = this.posts[index]
 
         // condicional "handle error"
         if(index === -1) {
-            throw new Error("id not found")
+            throw boom.notFound('Post not found')
         }
 
         // aplicando los cambios y retornando
@@ -56,13 +68,13 @@ class PostService {
         return this.posts[index]
     }
 
-    delete(id) {
+    async delete(id) {
         // constantes
         const index = this.posts.findIndex((post) => post.id == id) // busca el indice del id proporcionado
 
         // condicional "handle error"
         if(index === -1) {
-            throw console.error("El id proporcionado no ha sido encontrado");
+            throw boom.notFound("Post not found")
         }
 
         // aplicando y retornando
